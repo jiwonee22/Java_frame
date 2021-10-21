@@ -12,6 +12,7 @@ import mybatis.MyBatisConnectionFactory;
 
 public class MyBatisEx {
 	
+	
 	public static void main(String[] args) {
 		
 		//마이바티스 실행 객체
@@ -71,6 +72,7 @@ public class MyBatisEx {
 		Dept input = new Dept();
 		
 		Scanner sc = new Scanner(System.in);
+		
 		System.out.print("부서 번호? ");
 		input.setDeptno(sc.nextInt());
 
@@ -80,6 +82,8 @@ public class MyBatisEx {
 		
 		System.out.print("위치? ");
 		input.setLoc(sc.nextLine());
+		
+		sc.close();
 		
 		//중복 확인
 		Dept res = deptDao.selectByDeptno(input.getDeptno());
