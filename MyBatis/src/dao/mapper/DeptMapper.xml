@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 마이바티스 3 Mapper DOCTYPE -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+
+<mapper namespace="dao.face.DeptDao"> <!-- 연결 되어있는지 확인하기 -->
+
+	<!-- id: 메소드 이름, resultType: 추상메소드의 반환 데이터타입, parameterType: 매개변수의 데이터타입 -->
+	<!-- 세미콜론은 X, 매개변수랑 이름 똑같이 넣기 -->	
+	<select id="selectByDeptno" resultType="dto.Dept" parameterType="int">
+		SELECT
+			deptno, dname, loc
+		FROM dept
+		WHERE deptno = #{deptno } 
+<!-- 		WHERE deptno = #{value } -->
+	</select>
+	
+	<select id="selectAll" resultType="dto.Dept">
+		SELECT 
+			deptno, dname, loc
+		FROM dept
+		ORDER BY deptno
+	</select>
+	
+	<select id="selectByDname" resultType="dto.Dept" parameterType="String">
+		SELECT 
+			deptno, dname, loc
+		FROM dept
+		WHERE dname = #{dname }
+	</select>
+	
+	<!-- 매개변수가 객체일 때, column이름 적으면 mybatis가 알아서 getter 호출해줌 -->
+	<select id="selectByDnameDept" resultType="dto.Dept" parameterType="dto.Dept">
+		SELECT
+			deptno, dname, loc
+		FROM dept
+		WHERE dname = #{dname }
+	</select>
+	
+	<!-- insert에는 result 없음, 굳이 적지 않아도 INSERT UPDATE DELETE 같은 경우는 반환타입을 int로 하면 영향 받은 행수 반환 -->
+	<insert id="insert" parameterType="dto.Dept">
+		INSERT INTO dept (deptno, dname, loc)
+		VALUES (#{deptno }, #{dname }, #{loc })	
+	</insert>
+
+</mapper>
