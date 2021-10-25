@@ -7,7 +7,7 @@
   
 <mapper namespace="dao.face.EmpDao">
 
-	<resultMap type="dto.Emp" id="E">
+	<resultMap type="dto.Emp" id="Emp">
 		
 		<id column="empno" property="empno" /> <!-- pk지만 result로 적어도 상관 없음 -->
 		
@@ -23,8 +23,8 @@
 	</resultMap>
 
 	<select id="selectAll" resultType="dto.Emp">
-	<!--  -->
-		S1ELECT
+
+		SELECT
 			empno, ename, job, mgr
 			, hiredate, sal, comm, deptno
 		FROM emp
