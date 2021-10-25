@@ -7,8 +7,24 @@
   
 <mapper namespace="dao.face.EmpDao">
 
+	<resultMap type="dto.Emp" id="E">
+		
+		<id column="empno" property="empno" /> <!-- pk지만 result로 적어도 상관 없음 -->
+		
+		<result column="ename" property="ename" />
+		<result column="job" property="job" />
+		<result column="mgr" property="mgr" />
+		<result column="hiredate" property="hiredate" />
+		<result column="sal" property="sal" />
+		<result column="comm" property="comm" />
+		<result column="deptno" property="deptno" />
+		<!-- column은 table column, property는 dto member field -->
+		
+	</resultMap>
+
 	<select id="selectAll" resultType="dto.Emp">
-		SELECT
+	<!--  -->
+		S1ELECT
 			empno, ename, job, mgr
 			, hiredate, sal, comm, deptno
 		FROM emp
