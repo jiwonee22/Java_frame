@@ -2,7 +2,9 @@ package dto;
 
 import java.util.Date;
 
+import org.apache.ibatis.type.Alias;
 
+@Alias("Emp")
 public class Emp {
 	
 	private int empno;

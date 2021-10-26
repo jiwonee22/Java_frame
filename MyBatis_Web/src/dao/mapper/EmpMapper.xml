@@ -21,23 +21,56 @@
 		<!-- column은 table column, property는 dto member field -->
 		
 	</resultMap>
-
-	<select id="selectAll" resultType="dto.Emp">
-
+	
+	<sql id="selectEmp">
 		SELECT
 			empno, ename, job, mgr
 			, hiredate, sal, comm, deptno
 		FROM emp
+	</sql>
+
+	<sql id="whereCond">
+		WHERE search LIKE '%' || #{keyword } || '%'
+	</sql>
+
+	<select id="selectAll" resultMap="Emp">
+		<include refid="selectEmp" />
 		ORDER BY empno
 	</select>
 
 	<select id="selectByEmpno" parameterType="int" resultType="dto.Emp">
-		SELECT
-			empno, ename, job, mgr
-			, hiredate, sal, comm, deptno
-		FROM emp
+		<include refid="selectEmp" />
 		WHERE empno = #{empno }	
 	</select>
+	
+	<!-- sql태그 예시) -->
+
+<!-- 	<sql id="searchCond">	 -->
+<!-- 		WHERE title LIKE '%' || ${search } || '%' -->
+<!-- 			OR content LIKE '%' || ${search } || '%' -->
+<!-- 	</sql> -->
+
+<!-- 	<sql id="selectBoard"> -->
+<!-- 		SELECT * FROM board -->
+<!-- 		<include refid="boardCond" /> -->
+<!-- 	</sql> -->
+	
+<!-- 	<select id="selectTotCntBoardList"> -->
+<!-- 		SELECT count(*) FROM ( -->
+<!-- 			<include refid="selectBoard" /> -->
+<!-- 		) CNT -->
+<!-- 	</select> -->
+	
+<!-- 	<select id="selectBoardList"> -->
+<!-- 		SELECT * FROM ( -->
+<!-- 			SELECT rownum rnum, B.* FROM ( -->
+<!-- 				<include refid="selectBoard" /> -->
+<!-- 				ORDER BY boardno DESC -->
+<!-- 			) B -->
+<!-- 		) BOARD -->
+<!-- 		WHERE rnum BETWEEN #{startNo } AND #{endNo } -->
+<!-- 	</select> -->
+	
 
 </mapper>
 
