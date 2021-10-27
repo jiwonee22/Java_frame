@@ -9,13 +9,10 @@
 	
 	<select id="select1" resultType="hashmap">
 		SELECT * FROM emp
-		
 		<if test="true">
 		WHERE deptno = 10
 		</if>
-		
 		ORDER BY empno
-	
 	</select>
 	
 	<select id="select2" resultType="hashmap" parameterType="String">
@@ -25,7 +22,6 @@
 			AND ename LIKE '%' || #{ename } || '%'
 		</if>
 		ORDER BY empno		
-	
 	</select>
 	
 	<select id="select3" resultType="hashmap" parameterType="Emp">
@@ -38,19 +34,67 @@
 			OR ename LIKE '%'  || #{ename } || '%'
 		</if>		
 		ORDER BY empno
-	
 	</select>
 	
-	<select id="select4" resultType="hashmap" parameterType="hashmap" >
+	<select id="select4" resultType="hashmap" parameterType="hashmap">
 		SELECT * FROM emp
 		WHERE 1=1
-		<if test="category.equals('ename')">
+		<choose>
+		<when test="category!=null and category.equals('ename')">
 			AND ename = #{keyword }
-		</if>
-		<if test="category.equals('job')">
+		</when>
+		<when test="category!=null and category.equals('job')">
 			AND job = #{keyword }
-		</if>
+		</when>
+		</choose>
 		ORDER BY empno
 	</select>
+	
+	<select id="selectCheckbox" resultType="hashmap" parameterType="hashmap">
+		SELECT * FROM emp
+		<if test="deptnoArr != null"> <!-- 선택하고 조회할 경우 -->
+		WHERE deptno IN
+		<foreach collection="deptnoArr" item="deptno" open="(" close=")" separator=",">
+			#{deptno }	
+		</foreach>
+		</if>
+		ORDER BY empno
+<!-- 		SELECT * FROM emp -->
+<!-- 		<if test="deptnoArr != null"> 선택하고 조회할 경우 -->
+<!-- 		WHERE -->
+<!-- 		<foreach collection="deptnoArr" item="deptno" open="WHERE" separator="OR"> -->
+<!-- 			deptno = #{deptno }	 -->
+<!-- 		</foreach> -->
+<!-- 		</if> -->
+<!-- 		ORDER BY empno -->
+	</select>
+	
+	<select id="selectByEmpno" resultType="hashmap" parameterType="int">
+		SELECT * FROM emp
+		WHERE empno = #{empno }
+	</select>
+	
+	<update id="update" parameterType="hashmap">
+		UPDATE emp
+
+		<trim prefix="SET" prefixOverrides=",">
+
+			<if test="job != null and !job.equals('')">
+				, job = #{job }
+			</if>
+			<if test="sal != null and !sal.equals('')">
+				, sal = #{sal }
+			</if>
+			<if test="comm != null and !comm.equals('')">
+				, comm = #{comm }
+			</if>
+			
+		</trim>
+
+		WHERE empno = #{empno }
+	</update>
+	
+	
+	
 
 </mapper>

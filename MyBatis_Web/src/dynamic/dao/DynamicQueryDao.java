@@ -14,6 +14,12 @@ public interface DynamicQueryDao {
 	public List<HashMap<String, Object>> select3(Emp emp);
 	
 	public List<HashMap<String, Object>> select4(HashMap<String, Object> param);
+
+	public List<HashMap<String, Object>> selectCheckbox(HashMap<String, Object> map);
+
+	public HashMap<String, Object> selectByEmpno(int i);
+
+	public void update(HashMap<String, Object> param);
 	
 	
 }

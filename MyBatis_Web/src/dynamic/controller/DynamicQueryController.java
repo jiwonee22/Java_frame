@@ -19,7 +19,7 @@ import dynamic.dao.DynamicQueryDao;
 import mybatis.MyBatisConnectionFactory;
 
 @WebServlet("/dynamic/query")
-public class DynamicQuery extends HttpServlet {
+public class DynamicQueryController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	//마이바티스 연결 객체

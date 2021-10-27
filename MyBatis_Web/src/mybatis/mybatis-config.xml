@@ -9,9 +9,9 @@
 	<!-- Properties파일에서 추출한 데이터를 변수로 사용할 수 있도록 설정 -->
 	<properties resource="mybatis/db.properties" />
 
-	<typeAliases>
+	<typeAliases> <!-- 순서 지켜서 작성해야함 -->
 
-		<!-- 각각의 DTO에 Alias를 적용한다 -->
+			<!-- 각각의 DTO에 Alias를 적용한다 -->
 <!-- 		<typeAlias type="dto.Emp" alias="Emp" /> -->
 <!-- 		<typeAlias type="dto.Dept" alias="Dept" /> -->
 <!-- 		<typeAlias type="dto.Board" alias="Board" /> -->
