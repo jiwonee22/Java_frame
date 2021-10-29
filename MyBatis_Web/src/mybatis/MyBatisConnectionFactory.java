@@ -9,24 +9,24 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 public class MyBatisConnectionFactory {
 	
-	//SqlSession°´Ã¼¸¦ »ı¼ºÇÏ´Â ÆÑÅä¸®°´Ã¼
+	//SqlSessionê°ì²´ë¥¼ ìƒì„±í•˜ëŠ” íŒ©í† ë¦¬ê°ì²´
 	private static SqlSessionFactory sqlSessionFactory;
 	
 	static {
 		
-		//¸¶ÀÌ¹ÙÆ¼½º Configuration XML ÆÄÀÏÀÇ °æ·Î
+		//ë§ˆì´ë°”í‹°ìŠ¤ Configuration XML íŒŒì¼ì˜ ê²½ë¡œ
 		String res = "mybatis/mybatis-config.xml";
 		
 		
 		try {
-			//resource¿¡ ÇÊ¿äÇÑ ÆÄÀÏÀ» ºÒ·¯¿Í¼­ readerÇüÅÂ·Î º¯È¯ÇØ¼­ ¹İÈ¯ÇÔ.
-			//Configuration XMLÆÄÀÏÀ» ÀÌ¿ëÇÑ ÀÔ·Â ½ºÆ®¸² »ı¼º
+			//resourceì— í•„ìš”í•œ íŒŒì¼ì„ ë¶ˆëŸ¬ì™€ì„œ readerí˜•íƒœë¡œ ë³€í™˜í•´ì„œ ë°˜í™˜í•¨.
+			//Configuration XMLíŒŒì¼ì„ ì´ìš©í•œ ì…ë ¥ ìŠ¤íŠ¸ë¦¼ ìƒì„±
 			Reader reader = Resources.getResourceAsReader(res);
 			
-			//½Ì±ÛÅæ À¯Áö ÄÚµå
+			//ì‹±ê¸€í†¤ ìœ ì§€ ì½”ë“œ
 			if(sqlSessionFactory == null) {
 				
-				//ÀÔ·Â ½ºÆ®¸²À¸·Î ÀĞ¾îµéÀÎ ¼³Á¤ÆÄÀÏÀ» ÀÌ¿ëÇÏ¿©  SqlsessionFactory°´Ã¼ »ı¼º
+				//ì…ë ¥ ìŠ¤íŠ¸ë¦¼ìœ¼ë¡œ ì½ì–´ë“¤ì¸ ì„¤ì •íŒŒì¼ì„ ì´ìš©í•˜ì—¬  SqlsessionFactoryê°ì²´ ìƒì„±
 				sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
 			}
 			
@@ -37,7 +37,7 @@ public class MyBatisConnectionFactory {
 		
 	}
 
-	//private »ı¼ºÀÚ
+	//private ìƒì„±ì
 	private MyBatisConnectionFactory() {}
 	
 	public static SqlSessionFactory getSqlSessionFactory() {
