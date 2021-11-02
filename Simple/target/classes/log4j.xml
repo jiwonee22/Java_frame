@@ -14,7 +14,16 @@
 	<logger name="a.b.c">
 		<level value="info" />
 	</logger>
+	
 	<logger name="web">
+		<level value="info" />
+	</logger>
+	
+	<logger name="login">
+		<level value="info" />
+	</logger>
+	
+	<logger name="interceptor">
 		<level value="info" />
 	</logger>
 	
