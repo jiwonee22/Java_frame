@@ -38,7 +38,7 @@ public class AdminInterceptor implements HandlerInterceptor{
 				logger.info(" >> 접속 불가 : 일반 사용자 로그인");
 				
 				response.sendRedirect("/interceptor/main");
-				return false;
+				return false; //컨트롤러 접근 금지시키기
 				
 			}
 		}
