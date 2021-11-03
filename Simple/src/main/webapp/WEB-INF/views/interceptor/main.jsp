@@ -25,7 +25,7 @@
 </c:if>
 
 <hr>
-
+<a href="/board/list"><button>목록</button></a>
 <a href="/interceptor/admin/main">관리자 페이지로 이동하기</a>
 
 </body>

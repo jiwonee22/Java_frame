@@ -8,8 +8,9 @@
 </head>
 <body>
 
-<h1>파라미터 전달 테스트</h1>
-<hr>
+<h1>글 목록 페이지</h1>
+
+<a href="/board/write"><button>글쓰기</button></a>
 
 </body>
 </html>
