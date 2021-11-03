@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 마이바티스 3 Mapper DOCTYPE -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="file.dao.face.FileDao">
+
+	<resultMap type="file.dto.Filetest" id="Filetest">
+		<result column="origin_name" property="originName" />
+		<result column="stored_name" property="storedName" />
+	</resultMap>
+
+	<insert id="insertFile" parameterType="file.dto.Filetest">
+		INSERT INTO filetest(fileno, title, origin_name, stored_name)
+		VALUES (filetest_seq.nextval, #{title }, #{originName }, #{storedName })
+	</insert>
+	
+	<select id="selectFileAll" resultMap="Filetest">
+		SELECT
+			fileno, title, origin_name, stored_name
+		FROM filetest
+		ORDER BY fileno DESC
+	</select>
+	
+	<select id="selectByFileno" resultMap="Filetest" parameterType="int">
+		SELECT
+			fileno, title, origin_name, stored_name
+		FROM filetest
+		WHERE fileno = #{fileno }
+	</select>
+
+</mapper>

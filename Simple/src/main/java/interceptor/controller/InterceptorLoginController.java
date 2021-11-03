@@ -74,4 +74,9 @@ public class InterceptorLoginController {
 		logger.info("/interceptor/admin/main");
 
 	}
+	
+	@RequestMapping(value="/interceptor/admin/fail")
+	public void adminFail() {
+		logger.info("/interceptor/admin/fail");
+	}
 }
