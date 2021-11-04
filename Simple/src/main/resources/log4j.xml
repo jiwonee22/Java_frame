@@ -35,6 +35,10 @@
 		<level value="info" />
 	</logger>
 	
+	<logger name="tx">
+		<level value="info" />
+	</logger>
+	
 	<!-- Mybatis Loggers -->
 	<logger name="jdbc.connection">
 		<level value="WARN" />

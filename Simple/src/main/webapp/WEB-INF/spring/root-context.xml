@@ -44,13 +44,19 @@
 				<value>classpath:/web/dao/**/*Mapper.xml</value>
 				<value>classpath:/login/dao/**/*Mapper.xml</value>
 				<value>classpath:/file/dao/**/*Mapper.xml</value>
+				<value>classpath:/tx/dao/**/*Mapper.xml</value>
 			</array>
 		</property>
 	</bean>
 	
 	<!-- 마이바티스 인터페이스 설정(DAO설정) -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="web.dao, login.dao, file.dao" />
+		<property name="basePackage" value="web.dao, login.dao, file.dao, tx.dao" />
+	</bean>
+	
+	
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
 	</bean>
 
 		
