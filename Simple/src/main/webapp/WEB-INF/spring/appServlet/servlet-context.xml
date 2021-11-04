@@ -28,11 +28,13 @@
 		</interceptor>
 		<interceptor>
 	
-			<!-- 인터셉터가 적용될 URL -->
-			<mapping path="/board/**" />
+				<!-- 인터셉터가 적용될 URL -->
+<!-- 			<mapping path="/board/**" /> -->
 	
-			<!-- 인터셉터가 적용되지 않도록 제외할 페이지(예외 페이지) -->
-			<exclude-mapping path="/board/noLogin" />
+				<!-- 인터셉터가 적용되지 않도록 제외할 페이지(예외 페이지) -->
+<!-- 			<exclude-mapping path="/board/noLogin" /> -->
+			
+			<mapping path="/board/write"/>
 	
 			<!-- 인터셉터 클래스 지정 -->
 			<beans:bean
@@ -63,6 +65,11 @@
 	<!-- DownloadView클래스를 down이라는 이름의 스프링빈으로 등록하기 -->
 	<beans:bean id="down" class="file.view.DownloadView" />
 	
+	<!-- JSON응답용 jsonView를 스프링빈으로 등록하기 -->
+	<beans:bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
+		<beans:property name="contentType" value="application/json;charset=UTF-8" />
+	</beans:bean>
+	
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		
 		<!-- 메모리에서 파일을 처리할 수 있는 최대 사이즈 제한 : 1MB -->
@@ -77,6 +84,6 @@
 	</beans:bean>
 	
 	
-	<context:component-scan base-package="a.b.c, web.controller, web.service, login.controller, login.service, interceptor.controller, file.controller, file.service" />
+	<context:component-scan base-package="a.b.c, web.controller, web.service, login.controller, login.service, interceptor.controller, file.controller, file.service, ajax.controller, tx.controller"/>
 	
 </beans:beans>
