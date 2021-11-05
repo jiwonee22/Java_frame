@@ -14,7 +14,7 @@
 		<result column="write_date" property="writeDate" />
 	</resultMap>
 
-	<select id="selectBoardList" resultMap="Board">
+	<select id="selectBoardList" resultMap="Board" parameterType="web.util.Paging">
 		SELECT * FROM (
 		    SELECT rownum, B.* FROM (
 		        SELECT board_no, title, content, writer_id, writer_nick, hit, write_date
