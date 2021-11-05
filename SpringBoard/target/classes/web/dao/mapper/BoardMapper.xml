@@ -16,13 +16,13 @@
 
 	<select id="selectBoardList" resultMap="Board" parameterType="web.util.Paging">
 		SELECT * FROM (
-		    SELECT rownum, B.* FROM (
+		    SELECT rownum rnum, B.* FROM (
 		        SELECT board_no, title, content, writer_id, writer_nick, hit, write_date
 		        FROM BOARD
 		        ORDER BY board_no DESC
 		    ) B
 		) BOARD
-		WHERE rownum BETWEEN #{startNo } AND #{endNo }
+		WHERE rnum BETWEEN #{startNo } AND #{endNo }
 	</select>
 	
 	<select id="selectCntAll" resultType="int">
