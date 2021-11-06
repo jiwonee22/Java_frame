@@ -28,5 +28,17 @@
 	<select id="selectCntAll" resultType="int">
 		SELECT COUNT (*) FROM BOARD
 	</select>
+	
+	<select id="selectBoardByBoardNo" resultMap="Board">
+        SELECT board_no, title, content, writer_id, writer_nick, hit, write_date
+        FROM BOARD
+        WHERE board_no = #{boardNo }  
+	</select>
+	
+	<update id="updateHit">
+		UPDATE BOARD
+		SET hit = hit + 1
+		WHERE board_no = #{boardNo }
+	</update>
 
 </mapper>

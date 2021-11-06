@@ -2,8 +2,6 @@ package web.service.face;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import web.dto.Board;
 import web.util.Paging;
 
@@ -24,6 +22,14 @@ public interface BoardService {
 	 * @return 페이징이 적용된 게시글 목록
 	 */
 	public List<Board> getList(Paging paging);
+	
+	/**
+	 * 게시글 번호로 게시글 객체를 받아온다
+	 * 
+	 * @param boardNo - 게시글 번호
+	 * @return 게시글 객체
+	 */
+	public Board getBoardByBoardNo(int boardNo);
 
 	
 

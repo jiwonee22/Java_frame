@@ -8,12 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import web.dto.Board;
 import web.service.face.BoardService;
 import web.util.Paging;
 
 @Controller
+@RequestMapping(value="/board")
 public class BoardController {
 	
 	//로깅 객체
@@ -22,8 +24,8 @@ public class BoardController {
 	//서비스 객체
 	@Autowired BoardService boardService;
 	
-	@RequestMapping(value="/board/list")
-	public void boardlist(Model model, Paging paramData) {
+	@RequestMapping(value="/list")
+	public void list(Model model, Paging paramData) {
 		logger.info("/board/list [GET]");
 		
 		Paging paging = boardService.getPaging(paramData);
@@ -38,5 +40,15 @@ public class BoardController {
 		model.addAttribute("boardList", boardList);
 		
 	}
-
+	
+	@RequestMapping(value="/view")
+	public void view(@RequestParam("boardno") int boardNo, Model model) {
+		logger.info("/board/view [GET]");
+		
+		Board boardView = boardService.getBoardByBoardNo(boardNo);
+		
+		model.addAttribute("board", boardView);
+		
+		
+	}
 }

@@ -5,22 +5,10 @@
 
 <c:import url="/WEB-INF/views/layout/header.jsp" />
 
-<style type="text/css">
-
-table {
-	table-layout: fixed;
-}
-
-table, th {
-	text-align: center;
-}
-
-</style>
+<body>
 
 <div class="container">
 
-<h3>게시글 목록</h3>
-<hr>
 
 <table class="table table-striped table-hover">
 <thead>
@@ -33,24 +21,21 @@ table, th {
 	</tr>
 </thead>
 <tbody>
-<c:forEach items="${boardList }" var="board">
 	<tr>
-		<td>${board.boardNo }</td>
-		<td><a href="/board/view?boardno=${board.boardNo }">${board.title }</a></td>
-		<td>${board.writerNick }</td>
-		<td>${board.hit }</td>
-		<td><fmt:formatDate value="${board.writeDate }" pattern="yy-MM-dd HH:mm:ss"/></td>
+		<td style="width: 10%;">${board.boardNo }</td>
+		<td style="width: 45%;">${board.title }</td>
+		<td style="width: 20%;">${board.writerNick }</td>
+		<td style="width: 10%;">${board.hit }</td>
+		<td style="width: 15%;">${board.writeDate }</td>
 	</tr>
-</c:forEach>
+	<tr>
+		<td colspan="5">${board.content }</td>
+	</tr>
 </tbody>
 </table>
 
-<span class="pull-right">total : ${paging.totalCount }</span>
-<div class="clearfix"></div>
 
-<c:import url="/WEB-INF/views/layout/paging.jsp" />
 
 </div><!-- .container -->
 
 <c:import url="/WEB-INF/views/layout/footer.jsp" />
-

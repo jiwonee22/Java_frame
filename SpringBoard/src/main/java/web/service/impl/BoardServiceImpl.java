@@ -29,10 +29,18 @@ public class BoardServiceImpl implements BoardService {
 
 		//페이징 계산
 		Paging paging = new Paging(totalCount, paramData.getCurPage());
-		
+
 		return paging;
 	}
 
+
+	@Override
+	public Board getBoardByBoardNo(int boardNo) {
+		
+		boardDao.updateHit(boardNo);
+		
+		return boardDao.selectBoardByBoardNo(boardNo);
+	}
 
 }
 
