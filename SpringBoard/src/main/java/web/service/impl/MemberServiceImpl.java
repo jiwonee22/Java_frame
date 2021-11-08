@@ -30,16 +30,23 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public void join(Member member) {
+	public boolean join(Member member) {
 		logger.info("join() {}", member);
 		
 		if(memberDao.selectCntById(member) <= 0) {
 			logger.info("중복되는 ID 없음");
 			memberDao.insertMember(member);
+			return true;
 		} else {
 			logger.info("이미 존재하는 ID");
+			return false;
 		}
 		
+	}
+	
+	@Override
+	public String getNick(Member member) {
+		return memberDao.selectNickByMember(member);
 	}
 
 	

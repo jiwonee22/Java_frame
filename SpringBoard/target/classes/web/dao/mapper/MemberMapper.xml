@@ -19,6 +19,11 @@
 		WHERE id = #{id }
 	</select>
 	
+	<select id="selectNickByMember" resultType="String" parameterType="web.dto.Member">
+		SELECT nick FROM MEMBER
+		WHERE id = #{id }
+	</select>
+	
 	<insert id="insertMember" parameterType="web.dto.Member">
 		INSERT INTO MEMBER (id, pw, nick)
 		VALUES (#{id }, #{pw }, #{nick })

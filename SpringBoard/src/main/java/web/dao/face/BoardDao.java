@@ -35,5 +35,16 @@ public interface BoardDao {
 	 * @param boardNo
 	 */
 	public void updateHit(int boardNo);
+	
+	/**
+	 * DB에 추가
+	 * 
+	 * @param title
+	 * @param content
+	 * @param id
+	 * @param nick
+	 */
+
+	public void insertBoard(String title, String content, String id, String nick);
 
 }

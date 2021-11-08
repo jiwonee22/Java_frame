@@ -2,6 +2,8 @@ package web.service.face;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import web.dto.Board;
 import web.util.Paging;
 
@@ -30,6 +32,17 @@ public interface BoardService {
 	 * @return 게시글 객체
 	 */
 	public Board getBoardByBoardNo(int boardNo);
+
+	/**
+	 * 게시글 작성
+	 * 
+	 * @param title
+	 * @param content
+	 * @param id
+	 * @param nick
+	 */
+	public void writeBoard(String title, String content, String id, String nick);
+	
 
 	
 

@@ -40,5 +40,10 @@
 		SET hit = hit + 1
 		WHERE board_no = #{boardNo }
 	</update>
+	
+	<insert id="insertBoard" parameterType="web.dto.Board">
+		INSERT INTO BOARD (title, content, writer_id, writer_nick)
+		VALUES (#{title }, #{content }, #{id }, #{nick })
+	</insert>
 
 </mapper>

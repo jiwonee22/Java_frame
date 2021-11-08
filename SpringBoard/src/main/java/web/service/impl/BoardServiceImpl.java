@@ -2,6 +2,8 @@ package web.service.impl;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,7 +43,13 @@ public class BoardServiceImpl implements BoardService {
 		
 		return boardDao.selectBoardByBoardNo(boardNo);
 	}
-
+	
+	@Override
+	public void writeBoard(String title, String content, String id, String nick) {
+		
+		boardDao.insertBoard(title, content, id, nick);
+		
+	}
 }
 
 

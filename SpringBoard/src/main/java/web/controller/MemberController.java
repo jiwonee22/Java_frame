@@ -37,13 +37,16 @@ public class MemberController {
 		logger.info("isMember : {}", isMember);
 		
 		if(isMember) { //성공
-			session.setAttribute("login", isMember);
-			session.setAttribute("memberId", member.getId());
-		} else {
-			session.invalidate();
+			session.setAttribute("login", true);
+			session.setAttribute("id", member.getId());
+			session.setAttribute("nick", memberService.getNick(member));
+			
+			return "redirect:/";
+
+		} else { //로그인 실패
+			return "redirect:/member/login";
 		}
 		
-		return "redirect:/member/main";
 		
 	}
 	
@@ -68,9 +71,16 @@ public class MemberController {
 		logger.info("/member/join [POST]");
 		logger.info("전달 파라미터 : {}", member);
 		
-		memberService.join(member);
+		boolean joinResult = memberService.join(member);
 		
-		return "redirect:/member/main";
+		if(joinResult) {
+			logger.info("회원가입 성공");
+			return "redirect:/member/main";
+		} else {
+			
+			logger.info("회원가입 실패");
+			return "redirect:/member/join";
+		}
 		
 	}
 	

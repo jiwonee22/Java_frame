@@ -27,4 +27,12 @@ public interface MemberDao {
 	 */
 	public void insertMember(Member member);
 
+	/**
+	 * id를 이용해서 nick을 조회한다
+	 * 
+	 * @param member
+	 * @return 조회된 nick
+	 */
+	public String selectNickByMember(Member member);
+
 }

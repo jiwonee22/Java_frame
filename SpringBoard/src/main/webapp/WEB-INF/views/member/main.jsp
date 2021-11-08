@@ -18,6 +18,7 @@
 <%-- <c:if test="${not empty login }"> --%>
 <c:if test="${login }">
 <a href="/member/logout"><button>로그아웃</button></a>
+<a href="/board/list"><button>게시판으로 이동</button></a>
 </c:if>
 
 <c:import url="/WEB-INF/views/layout/footer.jsp" />

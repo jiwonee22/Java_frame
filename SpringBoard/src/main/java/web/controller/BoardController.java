@@ -2,12 +2,15 @@ package web.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import web.dto.Board;
@@ -42,13 +45,47 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="/view")
-	public void view(@RequestParam("boardno") int boardNo, Model model) {
+	public String view(@RequestParam("boardno") int boardNo, Model model) {
 		logger.info("/board/view [GET]");
+		
+		if(boardNo < 1) {
+			return "redirect:/board/list";
+		}
 		
 		Board boardView = boardService.getBoardByBoardNo(boardNo);
 		
 		model.addAttribute("board", boardView);
 		
+		return "board/view";		
+	}
+	
+	@RequestMapping(value="/write", method = RequestMethod.GET)
+	public void write(HttpSession session) {
+		logger.info("/board/write[GET]");
 		
 	}
+	
+	@RequestMapping(value="/write", method = RequestMethod.POST)
+	public String writeProc(@RequestParam("title") String title, @RequestParam("content") String content, HttpSession session) {
+		logger.info("/board/write[POST]");
+		
+		String id = (String)session.getAttribute("id");
+		String nick = (String)session.getAttribute("nick");
+		
+		boardService.writeBoard(title, content, id, nick);
+		
+		return "redirect:/board/list";
+
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

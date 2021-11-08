@@ -17,6 +17,14 @@ public interface MemberService {
 	 * 
 	 * @param member
 	 */
-	public void join(Member member);
+	public boolean join(Member member);
+
+	/**
+	 * 회원의 닉네임 조회
+	 * 
+	 * @param member - 닉네임을 조회하려는 사용자 정보
+	 * @return 사용자의 닉네임
+	 */
+	public String getNick(Member member);
 
 }

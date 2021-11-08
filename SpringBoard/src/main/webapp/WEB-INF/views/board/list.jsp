@@ -45,6 +45,17 @@ table, th {
 </tbody>
 </table>
 
+<%-- 로그인 상태 --%>
+<%-- <c:if test="${not empty login }"> --%>
+<c:if test="${login }">
+<span class="pull-left"><a href="/board/write"><button>작성하기</button></a></span>
+</c:if>
+
+
+<c:if test="${empty login }">
+<span class="pull-left"><a href="/member/login"><button>로그인</button></a></span>
+</c:if>
+
 <span class="pull-right">total : ${paging.totalCount }</span>
 <div class="clearfix"></div>
 
