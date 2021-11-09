@@ -31,7 +31,7 @@ $(document).ready(function() {
 
 <div class="container">
 
-<h1>글쓰기 페이지</h1>
+<h1>게시글 수정하기</h1>
 <hr>
 
 <form action="/board/write" method="post" enctype="multipart/form-data">
@@ -41,16 +41,16 @@ $(document).ready(function() {
 </div>
 <div class="form-group">
 	<label for="title">제목</label>
-	<input type="text" id="title" name="title" class="form-control"/>
+	<input type="text" id="title" name="title"  value="${updateBoard.title }" class="form-control"/>
 </div>
 <div class="form-group">
 	<label for="content">본문</label>
-	<textarea rows="10" style="width: 100%;" id="content" name="content"></textarea>
+	<textarea rows="10" style="width: 100%;" id="content" name="content">${updateBoard.content }</textarea>
 </div>
 
 <div class="form-group">
 	<label for="file">첨부파일</label>
-	<input type="file" id="file" name="file" />
+	<a href="/board/download?fileNo=${boardfile.fileNo }">${boardfile.originName }</a>
 </div>
 
 <div class="text-center">

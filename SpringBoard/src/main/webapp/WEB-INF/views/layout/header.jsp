@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title> : : : SpringBoard : : : </title>
+<title>Insert title here</title>
 
 <!-- jQuery 2.2.4 -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
@@ -40,5 +40,5 @@
 <div class="wrap">
 
 <header class="header">
-	<h1>JIWON</h1>
+	<h1><a href="/">JIWON SPRING BOARD</a></h1>
 </header>

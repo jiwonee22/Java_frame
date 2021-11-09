@@ -5,8 +5,16 @@
 
 <c:import url="/WEB-INF/views/layout/header.jsp" />
 
-<style type="text/css">
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#btnWrite").click(function() {
+		$(location).attr("href", "/board/write");
+// 		location.href = "/board/write";
+	})
+})
+</script>
 
+<style type="text/css">
 table {
 	table-layout: fixed;
 }
@@ -15,11 +23,14 @@ table, th {
 	text-align: center;
 }
 
+td:nth-child(2) {
+	text-align: left;
+}
 </style>
 
 <div class="container">
 
-<h3>게시글 목록</h3>
+<h1>게시판 리스트</h1>
 <hr>
 
 <table class="table table-striped table-hover">
@@ -33,10 +44,10 @@ table, th {
 	</tr>
 </thead>
 <tbody>
-<c:forEach items="${boardList }" var="board">
+<c:forEach items="${list }" var="board">
 	<tr>
 		<td>${board.boardNo }</td>
-		<td><a href="/board/view?boardno=${board.boardNo }">${board.title }</a></td>
+		<td><a href="/board/view?boardNo=${board.boardNo }">${board.title }</a></td>
 		<td>${board.writerNick }</td>
 		<td>${board.hit }</td>
 		<td><fmt:formatDate value="${board.writeDate }" pattern="yy-MM-dd HH:mm:ss"/></td>
@@ -45,17 +56,7 @@ table, th {
 </tbody>
 </table>
 
-<%-- 로그인 상태 --%>
-<%-- <c:if test="${not empty login }"> --%>
-<c:if test="${login }">
-<span class="pull-left"><a href="/board/write"><button>작성하기</button></a></span>
-</c:if>
-
-
-<c:if test="${empty login }">
-<span class="pull-left"><a href="/member/login"><button>로그인</button></a></span>
-</c:if>
-
+<button id="btnWrite" class="btn btn-primary pull-left">글쓰기</button>
 <span class="pull-right">total : ${paging.totalCount }</span>
 <div class="clearfix"></div>
 
@@ -64,4 +65,14 @@ table, th {
 </div><!-- .container -->
 
 <c:import url="/WEB-INF/views/layout/footer.jsp" />
+
+
+
+
+
+
+
+
+
+
 

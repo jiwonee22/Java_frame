@@ -15,6 +15,39 @@
 		<level value="info" />
 	</logger>
 	
+	<logger name="web">
+		<level value="info" />
+	</logger>
+	
+	<!-- Mybatis Loggers -->
+	<logger name="jdbc.connection">
+		<level value="WARN" />
+	</logger>
+	
+	<logger name="jdbc.audit">
+		<level value="WARN" />
+	</logger>
+	
+	<logger name="jdbc.sqlonly">
+		<level value="WARN" />
+	</logger>
+	
+	<logger name="jdbc.sqltiming">
+		<level value="INFO" />
+	</logger>
+	
+	<logger name="jdbc.resultset">
+		<level value="WARN" />
+	</logger>
+	
+	<logger name="jdbc.resultsettable">
+		<level value="INFO" />
+	</logger>
+	
+	<logger name="org.mybatis">
+		<level value="WARN" />
+	</logger>
+	
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.core">
 		<level value="info" />

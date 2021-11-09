@@ -11,44 +11,61 @@ import web.service.face.MemberService;
 
 @Service
 public class MemberServiceImpl implements MemberService {
-	
-	//로깅 객체
+
 	private static final Logger logger = LoggerFactory.getLogger(MemberService.class);
-	
-	//DAO 객체
-	@Autowired MemberDao memberDao;
+
+	@Autowired private MemberDao memberDao;
 	
 	@Override
 	public boolean login(Member member) {
-		logger.info("login() {}", member);
+		int loginChk = memberDao.selectCntMember(member);
 		
-		if(memberDao.selectCnt(member) >= 1) {
-			return true;
-		}
-		
+		if(loginChk > 0)	return true;
+
 		return false;
-	}
-	
-	@Override
-	public boolean join(Member member) {
-		logger.info("join() {}", member);
-		
-		if(memberDao.selectCntById(member) <= 0) {
-			logger.info("중복되는 ID 없음");
-			memberDao.insertMember(member);
-			return true;
-		} else {
-			logger.info("이미 존재하는 ID");
-			return false;
-		}
-		
 	}
 	
 	@Override
 	public String getNick(Member member) {
 		return memberDao.selectNickByMember(member);
 	}
-
 	
-
+	@Override
+	public boolean join(Member member) {
+		
+		//중복 ID 확인
+		if( memberDao.selectCntById(member) > 0 ) {
+			return false;
+		}
+		
+		//회원가입(삽입)
+		memberDao.insert(member);
+		
+		//회원가입 결과 확인
+		if( memberDao.selectCntById(member) > 0 ) {
+			return true;
+		}
+		
+		return false;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

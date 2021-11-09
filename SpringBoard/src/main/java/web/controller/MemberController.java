@@ -12,83 +12,76 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import web.dto.Member;
 import web.service.face.MemberService;
 
-
 @Controller
+@RequestMapping(value="/member")
 public class MemberController {
-	
-	//로깅 객체
+
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
+
+	@Autowired private MemberService memberService; 
 	
-	//서비스 객체
-	@Autowired MemberService memberService;
-
-	@RequestMapping(value="/member/login", method = RequestMethod.GET)
-	public void memberLogin() {
-		logger.info("/member/login [GET]");
-	}
-
-	@RequestMapping(value="/member/login", method = RequestMethod.POST)
-	public String memberLoginProc(Member member, HttpSession session) {
-		logger.info("/member/login [GET]");
-		logger.info("전달 파라미터 : {}", member);
+	@RequestMapping(value="/login", method=RequestMethod.GET)
+	public void login() {}
+	
+	@RequestMapping(value="/login", method=RequestMethod.POST)
+	public String loginProc(Member member, HttpSession session) {
+		logger.info("/login {}", member);
 		
-		//아이디, 비밀번호 DB에서 조회하기
-		boolean isMember = memberService.login(member);
-		logger.info("isMember : {}", isMember);
+		boolean loginResult = memberService.login(member);
 		
-		if(isMember) { //성공
+		if(loginResult) {
+			logger.info("로그인 성공");
+
 			session.setAttribute("login", true);
 			session.setAttribute("id", member.getId());
 			session.setAttribute("nick", memberService.getNick(member));
 			
 			return "redirect:/";
-
-		} else { //로그인 실패
+			
+		} else {
+			logger.info("로그인 실패");
+			
 			return "redirect:/member/login";
-		}
-		
-		
+		}		
 	}
 	
-	@RequestMapping(value="/member/logout")
-	public String memberLogout(HttpSession session) {
-		logger.info("/member/logout [GET]");
-		
+	@RequestMapping(value="/logout")
+	public String logout(HttpSession session) {
 		session.invalidate();
 		
-		return "redirect:/member/main";
-		
+		return "redirect:/";
 	}
 	
-	@RequestMapping(value="/member/join", method = RequestMethod.GET)
-	public void memberJoin() {
-		logger.info("/member/join [GET]");
-		
-	}
+	@RequestMapping(value="/join", method=RequestMethod.GET)
+	public void join() { }
 	
-	@RequestMapping(value="/member/join", method = RequestMethod.POST)
-	public String memberJoinProc(Member member) {
-		logger.info("/member/join [POST]");
-		logger.info("전달 파라미터 : {}", member);
+	@RequestMapping(value="/join", method=RequestMethod.POST)
+	public String joinProc(Member member) {
+		logger.info("/member/join [POST] {}", member);
 		
 		boolean joinResult = memberService.join(member);
 		
 		if(joinResult) {
 			logger.info("회원가입 성공");
-			return "redirect:/member/main";
+			return "redirect:/";
 		} else {
-			
 			logger.info("회원가입 실패");
 			return "redirect:/member/join";
 		}
-		
 	}
 	
-	@RequestMapping(value="/member/main")
-	public void memberMain(HttpSession session) {
-		logger.info("/member/main [GET]");
-		
-		
-	}
-
+	@RequestMapping(value="/main")
+	public void main() { }
+	
 }
+
+
+
+
+
+
+
+
+
+
+

@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <footer class="footer">
-	<small> : : : FOOTER : : : </small>
+	<small>FOOTER 영역</small>
 </footer>
 
 </div><!-- .wrap -->

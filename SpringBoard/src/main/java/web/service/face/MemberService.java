@@ -5,19 +5,12 @@ import web.dto.Member;
 public interface MemberService {
 
 	/**
-	 * 로그인
+	 * 로그인 인증 처리
 	 * 
-	 * @param member
-	 * @return 
+	 * @param member - 입력한 ID/PW 정보
+	 * @return 로그인 인증 결과
 	 */
 	public boolean login(Member member);
-
-	/**
-	 * 회원가입
-	 * 
-	 * @param member
-	 */
-	public boolean join(Member member);
 
 	/**
 	 * 회원의 닉네임 조회
@@ -26,5 +19,12 @@ public interface MemberService {
 	 * @return 사용자의 닉네임
 	 */
 	public String getNick(Member member);
+
+	/**
+	 * 신규 회원 가입
+	 * @param member - 신규 회원의 정보
+	 * @return 회원가입 결과
+	 */
+	public boolean join(Member member);
 
 }

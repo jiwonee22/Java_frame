@@ -11,32 +11,11 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="com.yoo.jiwon">
-		<level value="info" />
-	</logger>
-	
 	<logger name="web">
-		<level value="info" />
+		<level value="debug" />
 	</logger>
 	
-	<!-- 3rdparty Loggers -->
-	<logger name="org.springframework.core">
-		<level value="info" />
-	</logger>
-	
-	<logger name="org.springframework.beans">
-		<level value="info" />
-	</logger>
-	
-	<logger name="org.springframework.context">
-		<level value="info" />
-	</logger>
-
-	<logger name="org.springframework.web">
-		<level value="info" />
-	</logger>
-	
-	<!-- Mybatis Loggers -->
+	<!-- 마이바티스 Loggers -->
 	<logger name="jdbc.connection">
 		<level value="WARN" />
 	</logger>
@@ -63,6 +42,23 @@
 	
 	<logger name="org.mybatis">
 		<level value="WARN" />
+	</logger>
+	
+	<!-- 3rdparty Loggers -->
+	<logger name="org.springframework.core">
+		<level value="info" />
+	</logger>
+	
+	<logger name="org.springframework.beans">
+		<level value="info" />
+	</logger>
+	
+	<logger name="org.springframework.context">
+		<level value="info" />
+	</logger>
+
+	<logger name="org.springframework.web">
+		<level value="info" />
 	</logger>
 
 	<!-- Root Logger -->

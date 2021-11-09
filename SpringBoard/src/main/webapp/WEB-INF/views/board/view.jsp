@@ -5,36 +5,43 @@
 
 <c:import url="/WEB-INF/views/layout/header.jsp" />
 
-<body>
-
 <div class="container">
 
+<h1>게시글 상세보기</h1>
+<hr>
 
-<table class="table table-striped table-hover">
-<thead>
-	<tr>
-		<th style="width: 10%;">글번호</th>
-		<th style="width: 45%;">제목</th>
-		<th style="width: 20%;">작성자</th>
-		<th style="width: 10%;">조회수</th>
-		<th style="width: 15%;">작성일</th>
-	</tr>
-</thead>
-<tbody>
-	<tr>
-		<td style="width: 10%;">${board.boardNo }</td>
-		<td style="width: 45%;">${board.title }</td>
-		<td style="width: 20%;">${board.writerNick }</td>
-		<td style="width: 10%;">${board.hit }</td>
-		<td style="width: 15%;">${board.writeDate }</td>
-	</tr>
-	<tr>
-		<td colspan="5">${board.content }</td>
-	</tr>
-</tbody>
+<table class="table table-bordered">
+<tr>
+	<td class="info">글번호</td><td colspan="3">${viewBoard.boardNo }</td>
+</tr>
+<tr>
+	<td class="info">아이디</td><td>${viewBoard.writerId }</td>
+	<td class="info">닉네임</td><td>${viewBoard.writerNick }</td>
+</tr>
+<tr>
+	<td class="info">조회수</td><td>${viewBoard.hit }</td>
+	<td class="info">작성일</td><td><fmt:formatDate value="${viewBoard.writeDate }" pattern="yy-MM-dd HH:mm:ss"/></td>
+</tr>
+<tr>
+	<td class="info">제목</td><td colspan="3">${viewBoard.title }</td>
+</tr>
+<tr>
+	<td class="info" colspan="4">본문</td>
+</tr>
+<tr>
+	<td colspan="4">${viewBoard.content }</td>
+</tr>
 </table>
 
+<a href="/board/download?fileNo=${boardfile.fileNo }">${boardfile.originName }</a>
 
+<div class="text-center">
+	<a href="/board/list"><button class="btn btn-default">목록</button></a>
+	<c:if test="${id eq viewBoard.writerId }">
+		<a href="/board/update?boardNo=${viewBoard.boardNo }"><button class="btn btn-primary">수정</button></a>
+		<a href="/board/delete?boardNo=${viewBoard.boardNo }"><button class="btn btn-danger">삭제</button></a>
+	</c:if>
+</div>
 
 </div><!-- .container -->
 
