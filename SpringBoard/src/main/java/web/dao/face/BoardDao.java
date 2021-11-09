@@ -70,6 +70,8 @@ public interface BoardDao {
 	 */
 	public Boardfile selectBoardfileByFileno(int fileNo);
 	
+	
+	
 }
 
 

@@ -108,6 +108,16 @@ public class BoardServiceImpl implements BoardService {
 		return boardDao.selectBoardfileByFileno(fileNo);
 	}
 	
+	@Override
+	public Board getBoardByBoardNo(Board updateBoard) {
+		return boardDao.selectBoardByBoardno(updateBoard);
+	}
+	
+	@Override
+	public void update(Board updateBoard, MultipartFile file) {
+		
+	}
+	
 }
 
 

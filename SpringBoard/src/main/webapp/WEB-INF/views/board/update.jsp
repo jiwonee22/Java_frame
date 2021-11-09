@@ -34,7 +34,7 @@ $(document).ready(function() {
 <h1>게시글 수정하기</h1>
 <hr>
 
-<form action="/board/write" method="post" enctype="multipart/form-data">
+<form action="/board/update" method="post" enctype="multipart/form-data">
 <div class="form-group">
 	<label for="write">작성자</label>
 	<input type="text" id="write" value="${nick }" class="form-control" readonly="readonly"/>
@@ -48,13 +48,26 @@ $(document).ready(function() {
 	<textarea rows="10" style="width: 100%;" id="content" name="content">${updateBoard.content }</textarea>
 </div>
 
-<div class="form-group">
-	<label for="file">첨부파일</label>
-	<a href="/board/download?fileNo=${boardfile.fileNo }">${boardfile.originName }</a>
+<div style="text-align: left;">
+	<div id="beforeFile">
+		<c:if test="${!empty boardfile}">
+		기존 파일 : 
+		<a href="/upload/${boardfile.storedName }" download="${boardfile.originName }">${boardfile.originName }</a>
+		<span id="delFile" style="color: red; font: bold; cursor: pointer;">x</span>
+		</c:if>
+		<c:if test="${empty boardfile}">
+		첨부파일이 없습니다.
+		</c:if>
+	</div>
+	<br>
+	<div id="afterFile">
+		<input type="file" name="file" />
+		<input type="hidden" name="fileDelete" id="fileDelete" value=""/>
+	</div>
 </div>
 
 <div class="text-center">
-	<button class="btn btn-primary" id="btnWrite">작성</button>
+	<button class="btn btn-primary" id="btnUpdate">수정하기</button>
 	<input type="reset" id="cancel" class="btn btn-danger" value="취소"/>
 </div>
 </form>

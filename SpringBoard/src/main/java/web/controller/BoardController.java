@@ -105,6 +105,8 @@ public class BoardController {
 	@RequestMapping(value="/update", method=RequestMethod.GET)
 	public void update(Board updateBoard, Model model) {
 		
+		updateBoard = boardService.getBoardByBoardNo(updateBoard);
+		
 		//첨부파일 정보 전달
 		Boardfile boardfile = boardService.getAttachFile(updateBoard);
 		model.addAttribute("boardfile", boardfile);
@@ -114,6 +116,20 @@ public class BoardController {
 		
 	}
 	
+	
+	@RequestMapping(value="/update", method=RequestMethod.POST)
+	public String updateProc(Board updateBoard, MultipartFile file) {
+
+		boardService.update(updateBoard, file);
+		
+		return "redirect:/board/list";
+			
+	
+	}
+
+
+
+
 }
 
 
