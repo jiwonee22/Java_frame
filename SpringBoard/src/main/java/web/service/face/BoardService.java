@@ -62,14 +62,6 @@ public interface BoardService {
 	 * @return 첨부파일 정보
 	 */
 	public Boardfile getFile(int fileNo);
-	
-	/**
-	 * 게시글 수정하기
-	 * 
-	 * @param updateBoard
-	 * @return
-	 */
-	public Board getBoardByBoardNo(Board updateBoard);
 
 	/**
 	 * 게시글 + 첨부파일을 수정한다
@@ -78,6 +70,13 @@ public interface BoardService {
 	 * @param file - 첨부파일 정보 DTO
 	 */
 	public void update(Board updateBoard, MultipartFile file);
+	
+	/**
+	 * 게시글 + 첨부파일 수정 처리
+	 * 
+	 * @param board - 삭제할 게시글의 게시글번호 객체
+	 */
+	public void delete(Board board);
 
 }
 

@@ -10,6 +10,7 @@ import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import web.dao.face.BoardDao;
@@ -51,6 +52,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 	
 	@Override
+	@Transactional
 	public void write(Board board, MultipartFile file) {
 
 		//게시글 정보 처리
@@ -108,15 +110,68 @@ public class BoardServiceImpl implements BoardService {
 		return boardDao.selectBoardfileByFileno(fileNo);
 	}
 	
+	
 	@Override
-	public Board getBoardByBoardNo(Board updateBoard) {
-		return boardDao.selectBoardByBoardno(updateBoard);
+	@Transactional
+	public void update(Board board, MultipartFile file) {
+		if( "".equals(board.getTitle()) ) {
+			board.setTitle("(제목없음)");
+		}
+		boardDao.update(board);
+
+		//----------------------------------------
+
+		if( file.getSize() <= 0 ) {
+			return;
+		}
+	
+		//파일이 저장될 경로(real path)
+		String storedPath = context.getRealPath("upload");
+		
+		//폴더가 존재하지 않으면 생성하기
+		File stored = new File(storedPath);
+		if( !stored.exists() ) {
+			stored.mkdir();
+		}
+		
+		//원본파일이름 알아내기
+		String originName = file.getOriginalFilename();
+		
+		//원본파일이름에 UUID추가하기 (파일명이 중복되지않도록 설정)
+		String storedName = originName + UUID.randomUUID().toString().split("-")[4];
+		
+		//저장될 파일 정보 객체
+		File dest = new File( stored, storedName );
+		
+		try {
+			//업로드된 파일을 저장하기
+			file.transferTo(dest);
+			
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		//----------------------------------------
+		
+		Boardfile boardfile = new Boardfile();
+		boardfile.setBoardNo(board.getBoardNo());
+		boardfile.setOriginName(originName);
+		boardfile.setStoredName(storedName);
+		
+		boardDao.deleteFile(board);
+		boardDao.insertFile(boardfile);
+		
 	}
 	
 	@Override
-	public void update(Board updateBoard, MultipartFile file) {
-		
+	@Transactional
+	public void delete(Board board) {
+		boardDao.deleteFile(board);
+		boardDao.delete(board);
 	}
+
 	
 }
 

@@ -70,6 +70,27 @@ public interface BoardDao {
 	 */
 	public Boardfile selectBoardfileByFileno(int fileNo);
 	
+	/**
+	 * 게시글정보를 수정
+	 * 
+	 * @param board - 수정할 내용을 가진 게시글 객체
+	 */
+	public void update(Board board);
+
+	/**
+	 * 게시글의 첨부파일을 삭제한다
+	 * 
+	 * @param board - 첨부파일을 삭제할 게시글 객체
+	 */
+	public void deleteFile(Board board);
+
+	/**
+	 * 게시글정보를 삭제
+	 * 
+	 * @param board - 삭제할 게시글의 글번호 객체
+	 */
+	public void delete(Board board);
+	
 	
 	
 }
